@@ -26,7 +26,7 @@
         }
 
         [Fact]
-        public void GivenTwoAccount_WhenMoneyIsTransferredToAnotherAccount_ThenBalanceIsLower()
+        public void GivenTwoAccounts_WhenMoneyIsTransferred_ThenPayerBalanceIsLower()
         {
             var payer = new Account();
             var initialBalance = payer.Balance;
@@ -34,6 +34,19 @@
             var payee = new Account();
             payer.Transfer(payee, 100);
             payer.Balance.Should().Be(initialBalance - 100);
+        }
+
+        [Fact]
+        public void GivenTwoAccounts_WhenMoneyIsTransfered_ThenPayeeBalanceIsHigher()
+        {
+            var payer = new Account();
+            var payee = new Account();
+
+            var initialBalance = payee.Balance;
+
+            payer.Transfer(payee, 100);
+
+            payee.Balance.Should().Be(initialBalance + 100);
         }
     }
 }

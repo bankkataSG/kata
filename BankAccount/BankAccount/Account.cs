@@ -17,6 +17,7 @@
         public void Transfer(Account payee, int amount)
         {
             Balance -= amount;
+            payee.Balance += amount;
         }
     }
 }
