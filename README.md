@@ -1,6 +1,8 @@
-App is written in .NETcore
-
 Code is structured as follows:
+
+There is one visual studio sultion BankAccount.sln
+
+Within this solution are the following projects
 
 1. Core bank account logic in BankAccount.csproj
 1. Simple file system based "database" in TransactionStorage.csproj
