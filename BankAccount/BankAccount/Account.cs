@@ -8,7 +8,7 @@ namespace BankAccount
     {
         public Account()
         {
-            History = new List<object>();
+            History = new List<Transaction>();
             Id = Guid.NewGuid();
             Balance = 0;
         }
@@ -21,8 +21,9 @@ namespace BankAccount
         {
             Balance -= amount;
             payee.Balance += amount;
+            History.Add(new Transaction());
         }
 
-        public List<object> History { get; }
+        public List<Transaction> History { get; }
     }
 }

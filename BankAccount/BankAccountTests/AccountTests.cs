@@ -53,11 +53,14 @@
             payee.Balance.Should().Be(initialBalance + 100);
         }
 
-        //[Fact]
-        //public void WhenMoneyIsSubstracted_ThenEntryInTransactionHistoryIsWritten()
-        //{
-        //    //payer.Substract(payee, 110);
-        //    //payer
-        //}
+        [Fact]
+        public void WhenMoneyIsSubstracted_ThenEntryInTransactionHistoryIsWritten()
+        {
+            payer.History.Clear();
+
+            payer.Substract(payee, 133);
+
+            payer.History.Count.Should().Be(1);
+        }
     }
 }
