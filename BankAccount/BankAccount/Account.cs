@@ -17,13 +17,22 @@ namespace BankAccount
 
         public int Balance { get; private set; }
 
-        public void Substract(Account payee, int amount)
+        public void Send(Account payee, int amount)
         {
+            var transaction = new Transaction(payee.Id, Id, amount);
+
             Balance -= amount;
-            payee.Balance += amount;
-            History.Add(new Transaction());
+            payee.Receive(transaction);
+
+            History.Add(transaction);
         }
 
         public List<Transaction> History { get; }
+
+        public void Receive(Transaction transaction)
+        {
+            Balance += transaction.Amount;
+            History.Add(transaction);
+        }
     }
 }
