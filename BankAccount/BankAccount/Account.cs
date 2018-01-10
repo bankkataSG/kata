@@ -7,8 +7,11 @@
         public Account()
         {
             Id = Guid.NewGuid();
+            Balance = 0;
         }
 
         public Guid Id { get; }
+
+        public int Balance { get; }
     }
 }
