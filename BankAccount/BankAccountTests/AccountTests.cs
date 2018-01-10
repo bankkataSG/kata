@@ -24,5 +24,16 @@
         {
             account.Balance.Should().Be(0);
         }
+
+        [Fact]
+        public void GivenTwoAccount_WhenMoneyIsTransferredToAnotherAccount_ThenBalanceIsLower()
+        {
+            var payer = new Account();
+            var initialBalance = payer.Balance;
+
+            var payee = new Account();
+            payer.Transfer(payee, 100);
+            payer.Balance.Should().Be(initialBalance - 100);
+        }
     }
 }
