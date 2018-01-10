@@ -5,6 +5,9 @@ namespace BankAccountTests
     public class Tests
     {
         [Fact]
-        public void CanRun() { }
+        public void CanCreateAccount()
+        {
+            var bankAccount = new Account();
+        }
     }
 }
