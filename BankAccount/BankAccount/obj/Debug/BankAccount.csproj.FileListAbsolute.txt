@@ -1,0 +1,6 @@
+C:\github\kata\BankAccount\BankAccount\bin\Debug\BankAccount.dll
+C:\github\kata\BankAccount\BankAccount\bin\Debug\BankAccount.pdb
+C:\github\kata\BankAccount\BankAccount\obj\Debug\BankAccount.csprojResolveAssemblyReference.cache
+C:\github\kata\BankAccount\BankAccount\obj\Debug\BankAccount.csproj.CoreCompileInputs.cache
+C:\github\kata\BankAccount\BankAccount\obj\Debug\BankAccount.dll
+C:\github\kata\BankAccount\BankAccount\obj\Debug\BankAccount.pdb
