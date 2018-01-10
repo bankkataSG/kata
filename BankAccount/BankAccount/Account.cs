@@ -1,4 +1,6 @@
-﻿namespace BankAccount
+﻿using System.Collections.Generic;
+
+namespace BankAccount
 {
     using System;
 
@@ -6,6 +8,7 @@
     {
         public Account()
         {
+            History = new List<object>();
             Id = Guid.NewGuid();
             Balance = 0;
         }
@@ -14,10 +17,12 @@
 
         public int Balance { get; private set; }
 
-        public void Transfer(Account payee, int amount)
+        public void Substract(Account payee, int amount)
         {
             Balance -= amount;
             payee.Balance += amount;
         }
+
+        public List<object> History { get; }
     }
 }

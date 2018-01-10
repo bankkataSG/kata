@@ -6,47 +6,58 @@
 
     public class AccountTests
     {
-        private readonly Account account;
+        private Account payer;
+        private Account payee;
 
         public AccountTests()
         {
-            account = new Account();
+            payer = new Account();
+            payee = new Account();
         }
 
         [Fact]
         public void GivenNewAccount_ThenAccountId_ShouldBeSet()
         {
-            account.Id.Should().NotBeEmpty();
+            new Account().Id.Should().NotBeEmpty();
         }
 
         [Fact]
         public void GivenNewAccount_ThenBalance_ShouldBeZero()
         {
-            account.Balance.Should().Be(0);
+            new Account().Balance.Should().Be(0);
+        }
+
+        [Fact]
+        public void NewAccount_HasEmptyHistory()
+        {
+            new Account().History.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenTwoAccounts_WhenMoneyIsTransferred_ThenPayerBalanceIsLower()
         {
-            var payer = new Account();
             var initialBalance = payer.Balance;
 
-            var payee = new Account();
-            payer.Transfer(payee, 100);
+            payer.Substract(payee, 100);
+
             payer.Balance.Should().Be(initialBalance - 100);
         }
 
         [Fact]
         public void GivenTwoAccounts_WhenMoneyIsTransfered_ThenPayeeBalanceIsHigher()
         {
-            var payer = new Account();
-            var payee = new Account();
-
             var initialBalance = payee.Balance;
 
-            payer.Transfer(payee, 100);
+            payer.Substract(payee, 100);
 
             payee.Balance.Should().Be(initialBalance + 100);
         }
+
+        //[Fact]
+        //public void WhenMoneyIsSubstracted_ThenEntryInTransactionHistoryIsWritten()
+        //{
+        //    //payer.Substract(payee, 110);
+        //    //payer
+        //}
     }
 }
