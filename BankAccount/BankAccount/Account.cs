@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 
 namespace BankAccount
 {
     using System;
+    using System.Collections.Generic;
 
     public class Account
     {
@@ -33,6 +34,21 @@ namespace BankAccount
         {
             Balance += transaction.Amount;
             History.Add(transaction);
+        }
+
+        public List<Transaction> GetAllTransactionsFor(Account account)
+        {
+            return TransactionsFrom(account.Id).Union(TransActionsTo(account.Id)).ToList();
+        }
+
+        private IEnumerable<Transaction> TransActionsTo(Guid accountId)
+        {
+            return History.Where(h => h.Payee == accountId);
+        }
+
+        private IEnumerable<Transaction> TransactionsFrom(Guid accountId)
+        {
+            return History.Where(h => h.Payer == accountId);
         }
     }
 }

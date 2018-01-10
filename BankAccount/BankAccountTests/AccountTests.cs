@@ -104,5 +104,22 @@
 
             payer.History.First().Should().Be(transaction);
         }
+
+        [Fact]
+        public void GetHistoryFor_Account_ReturnsAllTransactionsToOrFrom_Account()
+        {
+            var sut = new Account();
+            var accountTwo = new Account();
+            var accountThree = new Account();
+
+            accountTwo.Send(sut, 102);
+            sut.Send(accountThree, 204);
+            sut.Send(accountTwo, 201);
+
+            var result = sut.GetAllTransactionsFor(accountTwo);
+            result.Count.Should().Be(2);
+            result.Should().Contain(t => t.Amount == 201 && t.Payer == sut.Id);
+            result.Should().Contain(t => t.Amount == 102 && t.Payer == accountTwo.Id);
+        }
     }
 }
